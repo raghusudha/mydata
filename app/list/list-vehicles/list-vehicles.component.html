@@ -1,0 +1,27 @@
+  <div><h1>Vehicle details</h1>
+<a routerLink="add-vehicles"  class="btn btn-sm btn-success mb-2">Add Vehicle</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Owner Name</th>
+            <th style="width: 30%">Registration number</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let vehicle of vehicleList">
+            <td>{{vehicle.ownername}}</td>
+            <td>{{vehicle.carnumber}}</td>
+            
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{vehicle.carnumber}}" (click)="showEditVehicleForm(vehicle)" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button class="btn btn-sm btn-danger btn-delete-user" (click)="deleteVehicle(vehicle)">Delete</button>
+            </td>
+            
+        </tr>
+        
+        <h4 *ngIf="vehicleList.length==0">Vehicles Not Found</h4>
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,48 @@
+
+<form [formGroup]="vehicleForm" (ngSubmit)="add()">
+    <div class="form-group">
+        <h1 *ngIf="isAddMode">Add Vehicle</h1>
+<h1 *ngIf="!isAddMode">Edit Vehicle</h1>
+        <a routerLink="/list">Click for added vehicles</a>
+        <input type="text" class="form-control  w-100" formControlName="carnumber" 
+            placeholder="Registration number" (keypress)="onClick($event)" maxlength="12"
+            [ngClass]="{ 'is-invalid': submitted && form['carnumber'].errors }" />
+        <div *ngIf="submitted && form['carnumber'].errors" class="invalid-feedback">
+            <div *ngIf="form['carnumber'].errors['required']">
+                Registration number is required
+            </div>
+            </div>
+        <input type="text" class="form-control w-100" formControlName="ownername" name="ownername"
+            placeholder="Owner name" [ngClass]="{ 'is-invalid': submitted && form['ownername'].errors }" />
+            <div *ngIf="submitted && form['ownername'].errors" class="invalid-feedback">
+                <div *ngIf="form['ownername'].errors['required']">
+                    ownername is required
+                </div>
+                </div>
+
+        <button class="btn btn-sm btn-primary mb-2"  *ngIf="!isEdit">Add</button>
+        <button class="btn btn-sm btn-secondary mb-2" (click)="resetForm()" *ngIf="!isEdit">Reset</button>
+    </div>
+</form>
+
+
+<!-- <form name="form" (ngSubmit)="f.form.valid && add()" #f="ngForm" novalidate>
+    <div class="form-group">
+
+        <input type="text" placeholder="Enter Owner name" [(ngModel)]="form.ownername" name="ownername" #ownername="ngModel"
+            class="form-control" size="15" required />
+        <span class="alert alert-danger" role="alert" *ngIf="f.submitted && ownername.invalid">Owner name is
+                required</span>
+  
+
+        <input type="text" placeholder="Enter registration number" [(ngModel)]="form.carnumber" name="carnumber" #carnumber="ngModel"
+            class="form-control" size="15" required />
+    <span class="alert alert-danger" role="alert" *ngIf="f.submitted && carnumber.invalid">Registration number is
+                required</span>
+      <button class="btn btn-sm btn-primary mb-2"  *ngIf="!isEdit">Add</button>
+        <button class="btn btn-sm btn-secondary mb-2" (click)="resetForm()" *ngIf="!isEdit">Reset</button>
+  
+<br>
+<br>
+</div>
+</form> -->
